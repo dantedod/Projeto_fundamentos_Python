@@ -47,16 +47,12 @@ class TransformarTask(Task):
 
         df_transformed = data.copy()
 
-        # 1. Extrai o domínio do e-mail
         df_transformed["dominio_email"] = df_transformed["email"].apply(lambda x: x.split("@")[1])
 
-        # 2. Converte 'valor_compra' para tipo float, tratando erros
         df_transformed["valor_compra"] = pd.to_numeric(df_transformed["valor_compra"], errors="coerce")
 
-        # 3. Remove linhas que possam ter ficado com valor nulo após a conversão
         df_transformed.dropna(subset=["valor_compra"], inplace=True)
 
-        # Salva o resultado intermediário
         os.makedirs(os.path.dirname(self.stage_path), exist_ok=True)
         df_transformed.to_csv(self.stage_path, index=False, sep=";", decimal=",")
 

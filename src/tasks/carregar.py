@@ -38,9 +38,7 @@ class CarregarTask(Task):
         if data is None:
             raise ValueError("Precisa de dados da etapa anterior.")
 
-        # Exemplo de agregação final: total de compras por domínio de e-mail
         agg_data = data.groupby("dominio_email")["valor_compra"].sum().reset_index()
 
-        # Salva o resultado final no formato Parquet
         os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
         agg_data.to_parquet(self.output_path, index=False)

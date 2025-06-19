@@ -31,11 +31,10 @@ class Pipeline:
         O pipeline é interrompido se qualquer
                 uma das tarefas levantar uma exceção.
         """
-        data = None  # Dados iniciais são nulos
+        data = None
         for task in self.tasks:
             try:
-                # O resultado de uma tarefa é a entrada para a próxima
                 data = task.execute(data)
             except Exception:
                 logging.error("Pipeline interrompido por erro na tarefa '%s'.", task.name)
-                break  # Encerra o pipeline
+                break

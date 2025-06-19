@@ -53,10 +53,8 @@ class ExtrairTask(Task):
         Returns:
             pd.DataFrame: Dados extraídos do arquivo CSV.
         """
-        # Gera o arquivo de dados se ele não existir
         if not os.path.exists(self.input_path):
             self._generate_data(10000)
 
-        # Extrai os dados do arquivo
         df = pd.read_csv(self.input_path, sep=";", decimal=",")
         return df
