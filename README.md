@@ -20,7 +20,7 @@ Construir um pipeline de dados robusto e modular, aplicando conceitos de:
 
 - Python 3.8 ou superior
 
-### 2. Instalação
+### 2. Instalação (Essa parte nao e obrigatoria para esse projeto especifico.)
 
 Crie um ambiente virtual e ative-o (altamente recomendado):
 

@@ -1,13 +1,14 @@
+"""Configure logger and provide a decorator for task logging."""
+
 import logging
+import os
 import time
 from datetime import datetime
-import os
-
 
 LOG_DIR = "logs"
 LOG_FILE = os.path.join(LOG_DIR, "execucao.log")
 
-os.makedirs(LOG_DIR, exist_ok="True")
+os.makedirs(LOG_DIR, exist_ok=True)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -16,13 +17,16 @@ logging.basicConfig(
 
 
 def _write_to_log_file(message):
+    """Write a message to the log file."""
     with open(LOG_FILE, "a", encoding="UTF-8") as file:
         file.write(f"{message}\n")
 
 
 def log_task(func):
+    """Log the start, success, and failure of a task execution."""
+
     def wrapper(task_instance, *args, **kwargs):
-        task_name = task_instance
+        task_name = task_instance.name if hasattr(task_instance, "name") else str(task_instance)
         logging.info(f"Executando tarefa: {task_name}")
         start_time = time.time()
 
