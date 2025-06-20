@@ -1,3 +1,7 @@
+# Equipe:
+- Dante de Oliveira Dantas - 2517595
+- Rafael Lima Tavares  - 2517595
+
 # Projeto_fundamentos_Python
 
 # Projeto de Pipeline de Dados - Engenharia de Dados
@@ -32,7 +36,7 @@ python -m venv venv
 source venv/bin/activate
 
 # Ativar no Windows
-.\venv\Scripts\activate
+venv\Scripts\activate.bat
 ```
 
 Instale as dependências listadas no arquivo `requirements.txt`:
@@ -41,23 +45,26 @@ Instale as dependências listadas no arquivo `requirements.txt`:
 pip install -r requirements.txt
 ```
 
-### 3. Execução do Pipeline
+### 3. Execução do Pipeline (Execução sem DVC)
 
 Para rodar o pipeline completo, execute o script `main.py` a partir da raiz do projeto:
 
 ```bash
-python src/main.py
+ python -m src.main
 ```
 
 Na primeira execução, a tarefa de extração criará um arquivo `data/input.csv` com 10.000 linhas de dados sintéticos.
 
-### 4. Verificando os Resultados
+### 4. Versionamento dos Dados com DVC
 
-Após a execução, os seguintes artefatos serão gerados:
+Execute o pipeline completo com DVC:
 
-- **Saída no Terminal**: O status de início e fim de cada tarefa será exibido.
-- **Arquivo de Log**: O arquivo `logs/execucao.log` conterá um registro detalhado com timestamp, status (OK/ERRO) e duração de cada tarefa.
-- **Arquivos de Dados Gerados**:
-  - `data/input.csv`: Dados brutos gerados pela tarefa de extração.
-  - `data/stage.csv`: Dados intermediários após a etapa de transformação.
-  - `data/output.parquet`: Dados finais agregados e salvos no formato Parquet.
+```bash
+dvc repro
+```
+
+Envie os dados versionados para o armazenamento remoto:
+
+```bash
+dvc push
+```
