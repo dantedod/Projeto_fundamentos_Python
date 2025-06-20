@@ -1,6 +1,6 @@
 # Equipe:
-- ** Dante de Oliveira Dantas : 2518583 **
-- ** Rafael Lima Tavares : 2517595 **
+- ** Dante de Oliveira Dantas ** - 2517595
+- ** Rafael Lima Tavares ** - 2517595
 
 # Projeto_fundamentos_Python
 
