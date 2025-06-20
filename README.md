@@ -1,8 +1,6 @@
 # Equipe:
-- Dante de Oliveira Dantas - 2517595
+- Dante de Oliveira Dantas - 2518583
 - Rafael Lima Tavares  - 2517595
-
-# Projeto_fundamentos_Python
 
 # Projeto de Pipeline de Dados - Engenharia de Dados
 
@@ -50,7 +48,7 @@ pip install -r requirements.txt
 Para rodar o pipeline completo, execute o script `main.py` a partir da raiz do projeto:
 
 ```bash
- python -m src.main
+python -m src.main
 ```
 
 Na primeira execução, a tarefa de extração criará um arquivo `data/input.csv` com 10.000 linhas de dados sintéticos.
