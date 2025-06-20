@@ -1,0 +1,28 @@
+schema: '2.0'
+stages:
+  run_etl:
+    cmd: python -m src.main
+    deps:
+    - path: src
+      hash: md5
+      md5: 73061a4b9e98c4082bec346f39a9074d.dir
+      size: 59276
+      nfiles: 40
+    outs:
+    - path: data/input.csv
+      hash: md5
+      md5: 7b23b22bf7314524b9e422f1bcf75aaa
+      size: 549039
+    - path: data/output.parquet
+      hash: md5
+      md5: 016cf7807251266f42f61645044201b6
+      size: 1834
+    - path: data/stage.csv
+      hash: md5
+      md5: f566a553a1a822a998f201e234aa6e49
+      size: 668068
+    - path: logs
+      hash: md5
+      md5: 9f8a2867ce04989ce64a33df97614226.dir
+      size: 134
+      nfiles: 1

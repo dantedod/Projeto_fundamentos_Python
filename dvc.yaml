@@ -1,0 +1,11 @@
+stages:
+  run_etl:
+    cmd: python -m src.main
+    deps:
+    - src
+    outs:
+    - data/input.csv
+    - data/output.parquet
+    - data/stage.csv
+    - logs:
+        cache: false
