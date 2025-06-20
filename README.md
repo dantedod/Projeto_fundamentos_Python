@@ -51,13 +51,17 @@ Para rodar o pipeline completo, execute o script `main.py` a partir da raiz do p
 
 Na primeira execução, a tarefa de extração criará um arquivo `data/input.csv` com 10.000 linhas de dados sintéticos.
 
-### 4. Verificando os Resultados
 
-Após a execução, os seguintes artefatos serão gerados:
+### 4. Versionamento dos Dados com DVC
 
-- **Saída no Terminal**: O status de início e fim de cada tarefa será exibido.
-- **Arquivo de Log**: O arquivo `logs/execucao.log` conterá um registro detalhado com timestamp, status (OK/ERRO) e duração de cada tarefa.
-- **Arquivos de Dados Gerados**:
-  - `data/input.csv`: Dados brutos gerados pela tarefa de extração.
-  - `data/stage.csv`: Dados intermediários após a etapa de transformação.
-  - `data/output.parquet`: Dados finais agregados e salvos no formato Parquet.
+Execute o pipeline completo com DVC:
+
+```bash
+dvc repro
+```
+
+Envie os dados versionados para o armazenamento remoto:
+
+```bash
+dvc push
+```
