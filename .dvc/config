@@ -1,4 +1,4 @@
 [core]
     remote = meu_storage
 ['remote "meu_storage"']
-    url = C:\Meu_Armazem_DVC
+    url = ./dvc_dados

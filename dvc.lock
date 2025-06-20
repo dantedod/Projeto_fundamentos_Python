@@ -5,24 +5,24 @@ stages:
     deps:
     - path: src
       hash: md5
-      md5: 73061a4b9e98c4082bec346f39a9074d.dir
-      size: 59276
+      md5: c72998e23399a9ecb0c599021c129af4.dir
+      size: 59711
       nfiles: 40
     outs:
     - path: data/input.csv
       hash: md5
-      md5: 7b23b22bf7314524b9e422f1bcf75aaa
-      size: 549039
+      md5: 725ade0112fa6a2da8a0cc838b00bcb6
+      size: 548746
     - path: data/output.parquet
       hash: md5
-      md5: 016cf7807251266f42f61645044201b6
+      md5: b8c7f883aafdb89d4dd543f4e845737a
       size: 1834
     - path: data/stage.csv
       hash: md5
-      md5: f566a553a1a822a998f201e234aa6e49
-      size: 668068
+      md5: 9038287cc3b827f998754e0b0e438cf7
+      size: 667717
     - path: logs
       hash: md5
-      md5: 9f8a2867ce04989ce64a33df97614226.dir
+      md5: 1dd56d68d210612b6179c7c6adf29ab1.dir
       size: 134
       nfiles: 1
