@@ -41,7 +41,7 @@ Instale as dependências listadas no arquivo `requirements.txt`:
 pip install -r requirements.txt
 ```
 
-### 3. Execução do Pipeline
+### 3. Execução do Pipeline (Execução sem DVC)
 
 Para rodar o pipeline completo, execute o script `main.py` a partir da raiz do projeto:
 
@@ -50,7 +50,6 @@ Para rodar o pipeline completo, execute o script `main.py` a partir da raiz do p
 ```
 
 Na primeira execução, a tarefa de extração criará um arquivo `data/input.csv` com 10.000 linhas de dados sintéticos.
-
 
 ### 4. Versionamento dos Dados com DVC
 
