@@ -32,7 +32,7 @@ python -m venv venv
 source venv/bin/activate
 
 # Ativar no Windows
-.\venv\Scripts\activate
+venv\Scripts\activate.bat
 ```
 
 Instale as dependências listadas no arquivo `requirements.txt`:
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 Para rodar o pipeline completo, execute o script `main.py` a partir da raiz do projeto:
 
 ```bash
-python src/main.py
+ python -m src.main
 ```
 
 Na primeira execução, a tarefa de extração criará um arquivo `data/input.csv` com 10.000 linhas de dados sintéticos.
