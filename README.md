@@ -1,3 +1,7 @@
+# Equipe:
+## Dante de Oliveira Dantas - 2518583
+## Rafael Lima Tavares - 2517595
+
 # Projeto_fundamentos_Python
 
 # Projeto de Pipeline de Dados - Engenharia de Dados
