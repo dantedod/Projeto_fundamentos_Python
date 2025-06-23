@@ -5,6 +5,7 @@ do arquivo CSV especificado em `input_path`.
 """
 
 import os
+import random
 
 import pandas as pd
 from faker import Faker
@@ -29,11 +30,58 @@ class ExtrairTask(Task):
         """Gera dados sintéticos para o projeto."""
         print(f"Arquivo {self.input_path} não encontrado. Gerando {num_rows} novos registros...")
         fake = Faker("pt_BR")
+
+        produtos = [
+            "Smartphone",
+            "Notebook",
+            "TV",
+            "Fone de Ouvido",
+            "Mouse",
+            "Teclado",
+            "Monitor",
+            "Webcam",
+            "Microfone",
+            "Impressora Multifuncional",
+            "Headset Gamer",
+            "Mousepad Gamer",
+            "Cadeira Gamer",
+            "Caixa de Som Bluetooth",
+            "HD Externo",
+            "Pen Drive",
+            "Cartão de Memória",
+            "Carregador Portátil (Power Bank)",
+            "Placa de Vídeo (GPU)",
+            "Processador (CPU)",
+            "Memória RAM",
+            "SSD 1TB",
+            "SSD 512GB",
+            "Placa-Mãe",
+            "Fonte de Alimentação (PSU)",
+            "Gabinete",
+            "Cooler para Processador",
+            "Smartwatch",
+            "Smartband",
+            "Tablet",
+            "Leitor de E-book",
+            "Assistente Virtual",
+            "Roteador Wi-Fi",
+            "Repetidor de Sinal",
+            "Nobreak (UPS)",
+            "Projetor",
+            "Cabo HDMI",
+            "Cabo USB-C",
+            "Adaptador DisplayPort",
+            "Filtro de Linha",
+        ]
+
         data = {
             "id": range(1, num_rows + 1),
             "nome": [fake.name() for _ in range(num_rows)],
             "email": [fake.email() for _ in range(num_rows)],
             "valor_compra": [fake.pydecimal(left_digits=4, right_digits=2, positive=True) for _ in range(num_rows)],
+            "data_cadastro": [fake.date_this_decade() for _ in range(num_rows)],
+            "cidade": [fake.city() for _ in range(num_rows)],
+            "produto_comprado": [random.choice(produtos) for _ in range(num_rows)],
         }
         df = pd.DataFrame(data)
         os.makedirs(os.path.dirname(self.input_path), exist_ok=True)

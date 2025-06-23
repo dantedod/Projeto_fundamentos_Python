@@ -4,6 +4,7 @@ Agrega e salva os dados transformados em um arquivo Parquet
 no caminho especificado em `output_path`.
 """
 
+import locale  # 1. Importar a biblioteca locale
 import os
 
 import pandas as pd
@@ -27,7 +28,8 @@ class CarregarTask(Task):
     def execute(self, data: pd.DataFrame) -> None:
         """Carrega os dados transformados e salva em arquivo de saída.
 
-        Neste caso, salva um agregado como arquivo Parquet.
+        Neste caso, salva um agregado por ano, cidade e produto
+        como arquivo Parquet, com valores monetários formatados como BRL.
 
         Args:
             data (pd.DataFrame): Dados transformados para serem carregados.
@@ -38,7 +40,35 @@ class CarregarTask(Task):
         if data is None:
             raise ValueError("Precisa de dados da etapa anterior.")
 
-        agg_data = data.groupby("dominio_email")["valor_compra"].sum().reset_index()
+        print("Iniciando agregação detalhada dos dados...")
+
+        agg_data = (
+            data.groupby(["ano_cadastro", "cidade", "produto_comprado"])
+            .agg(
+                valor_total=("valor_compra", "sum"), valor_medio=("valor_compra", "mean"), total_vendas=("id", "count")
+            )
+            .reset_index()
+        )
+
+        agg_data["valor_total"] = agg_data["valor_total"].round(2)
+        agg_data["valor_medio"] = agg_data["valor_medio"].round(2)
+
+        print("Formatando colunas de valor para o padrão BRL (R$ 1.234,56)...")
+        try:
+            locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
+        except locale.Error:
+            print("Locale 'pt_BR.UTF-8' não encontrado. Usando locale padrão do sistema.")
+            try:
+                locale.setlocale(locale.LC_MONETARY, "Portuguese_Brazil.1252")
+            except locale.Error:
+                print("Não foi possível configurar um locale para Português (BRL).")
+
+        agg_data["valor_total"] = agg_data["valor_total"].apply(lambda x: locale.currency(x, grouping=True))
+        agg_data["valor_medio"] = agg_data["valor_medio"].apply(lambda x: locale.currency(x, grouping=True))
+
+        print(f"Agregação e formatação concluídas. Gerando arquivo com {len(agg_data)} linhas.")
 
         os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
         agg_data.to_parquet(self.output_path, index=False)
+
+        print(f"Arquivo de saída salvo em: {self.output_path}")
