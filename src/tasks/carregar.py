@@ -4,7 +4,7 @@ Agrega e salva os dados transformados em um arquivo Parquet
 no caminho especificado em `output_path`.
 """
 
-import locale  # 1. Importar a biblioteca locale
+import locale
 import os
 
 import pandas as pd
@@ -53,7 +53,6 @@ class CarregarTask(Task):
         agg_data["valor_total"] = agg_data["valor_total"].round(2)
         agg_data["valor_medio"] = agg_data["valor_medio"].round(2)
 
-        print("Formatando colunas de valor para o padrão BRL (R$ 1.234,56)...")
         try:
             locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
         except locale.Error:
@@ -65,8 +64,6 @@ class CarregarTask(Task):
 
         agg_data["valor_total"] = agg_data["valor_total"].apply(lambda x: locale.currency(x, grouping=True))
         agg_data["valor_medio"] = agg_data["valor_medio"].apply(lambda x: locale.currency(x, grouping=True))
-
-        print(f"Agregação e formatação concluídas. Gerando arquivo com {len(agg_data)} linhas.")
 
         os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
         agg_data.to_parquet(self.output_path, index=False)
