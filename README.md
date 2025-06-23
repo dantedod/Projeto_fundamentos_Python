@@ -60,9 +60,3 @@ Execute o pipeline completo com DVC:
 ```bash
 dvc repro
 ```
-
-Envie os dados versionados para o armazenamento remoto:
-
-```bash
-dvc push
-```
